@@ -5,20 +5,26 @@ import React ,{ useState,useEffect,useRef,useReducer } from 'react';
 
     export default function TodoList({todo,dispatchTodo}){
 
-        // if(todo.complete == 'adsd'){
-        //    var msg = <a href='#'>Its true</a>
-        // }else{
-        //    var msg = <a href='#'>Its false</a>
-        // }
-        return(
-            <>
-            <h2 className='todoList' style={{ color: todo.complete ? '#04AA6D' : 'red'}}>* {todo.name}</h2>
-   
-            <button type='button' className='btnToggle' onClick={()=>dispatchTodo({type:'toggle',payload : {id : todo.id}})}>{(todo.complete) ? 'Not Completed' : 'Completed'}</button>
-            <button type='button' className='btnRemove' onClick={()=>dispatchTodo({type:'remove',payload : {id : todo.id}})}>Remove</button>
 
-            </>
+
+
+        return(
+            <div class="">
+                
+                <span class="flex gap-2 text-"> 
+                    <input  type="checkbox" checked={todo.complete} onChange={()=>dispatchTodo({type:'toggle',payload : {id : todo.id}})}/>
+                    <h2 class={`text-${todo.complete ? 'black' : 'green'}`}> {todo.name}</h2>
+                </span> 
+
+
+
+   {/* <div class="mt-2"> 
+            <button type='button' class="border-2 border-green-500 rounded p-2 py-1 bg-slate-50 font-serif font-medium ml-2 hover:bg-green-500 ease-linear duration-200" onClick={()=>dispatchTodo({type:'toggle',payload : {id : todo.id}})}>{(todo.complete) ? 'Not Completed' : 'Completed'}</button>
+            <button type='button' class="border-2 border-red-600 rounded p-2 py-1 bg-slate-50 font-serif font-medium ml-2 hover:bg-red-600 ease-linear duration-200 hover:text-white" onClick={()=>dispatchTodo({type:'remove',payload : {id : todo.id}})}>Remove</button>
+</div> */}
+</div>
         )
+
     }
 
 
@@ -28,27 +34,4 @@ import React ,{ useState,useEffect,useRef,useReducer } from 'react';
 
 
 
-    // export default function TodoList({ todo, dispatchTodo }) {
-    //     const handleToggle = () => {
-    //       dispatchTodo({ type: 'toggle', payload: { id: todo.id } });
-    //     };
-      
-    //     const handleRemove = () => {
-    //       dispatchTodo({ type: 'remove', payload: { id: todo.id } });
-    //     };
-      
-    //     return (
-    //       <>
-    //         <p style={{ color: todo.complete ? 'black' : 'red' }}>{todo.name}</p>
-    //         <input
-    //           type="checkbox"
-    //           checked={todo.complete}
-    //           onChange={handleToggle} // Use onChange for checkbox input
-    //         />
-    //         <button onClick={handleRemove}>Remove</button>
-    //       </>
-    //     );
-    //   }
-      
-
-    // export default TodoList;
+    
