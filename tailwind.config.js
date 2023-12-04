@@ -35,5 +35,7 @@ module.exports = {
       'mono': ['ui-monospace', 'SFMono-Regular'],
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 }

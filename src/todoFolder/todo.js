@@ -31,6 +31,12 @@ export default function TodoComp() {
     return { id: Date.now(), name: name, complete: false };
   };
 
+  // const scrollToTop = () => {
+  //   window.scrollTo({
+  //     top: 0,
+  //     behavior: 'smooth' // This enables smooth scrolling
+  //   });
+    
   const reducerFunc = (todos, action) => {
     switch (action.type) {
       case "add":
@@ -50,7 +56,14 @@ export default function TodoComp() {
         });
       case "remove":
         alertMsg("Todo Removed Successfully", "success");
+        
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+        
         return todos.filter((todo) => todo.id !== action.payload.id);
+        
       default:
         return todos;
     }
@@ -107,7 +120,7 @@ export default function TodoComp() {
 
           {/* {flashMessage ? ( */}
             <div style={{ paddingTop: "13px" }}>
-              <div class={`p-2 m-2 rounded text-slate-950 font-sans font-semibold w-52 md:w-80 lg:w-96 ${flashMessage.cls}`}>
+              <div class={`p-2 m-2 rounded text-slate-950 font-sans font-semibold flex-nowrap w-96 md:w-80 lg:w-96 ${flashMessage.cls}`}>
                 {flashMessage.msg}
               </div>
             </div>
@@ -130,8 +143,8 @@ export default function TodoComp() {
           {todos.length === 0 ? <CompEmpty /> : ""}
 
 
-          <div class="text-white font-semibold p-3 left-0 mt-2 w-96 rounded-lg align-items-left bg-slate-300">
-            {todos.map((todo) => {
+          <div class="text-slate-900 text-md tracking-widest font-semibold text-lg  p-4 left-0 mt-2 w-96 rounded-lg align-items-left bg-slate-900">
+            {todos.map((todo) => { 
               return (
                 
                   <TodoList key={todo.id} todo={todo} dispatchTodo={dispatchTodo} />
