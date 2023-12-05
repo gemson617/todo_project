@@ -52,6 +52,7 @@ export default function TodoComp() {
           if (todo.id === action.payload.id) {
             return { ...todo, complete: !todo.complete };
           }
+          
           return todo;
         });
       case "remove":
@@ -96,6 +97,9 @@ export default function TodoComp() {
   }, [flashMessage]);
 
 
+
+
+
   return (
 
     <div className="gradient-background">
@@ -118,15 +122,15 @@ export default function TodoComp() {
         </form>
 
 
-          {/* {flashMessage ? ( */}
+          {flashMessage ? (
             <div style={{ paddingTop: "13px" }}>
               <div class={`p-2 m-2 rounded text-slate-950 font-sans font-semibold flex-nowrap w-96 md:w-80 lg:w-96 ${flashMessage.cls}`}>
                 {flashMessage.msg}
               </div>
             </div>
-          {/* // ) : (
-          //   null
-          // )}  */}
+        ) : (
+            null
+          )}  
 
 {/* {`flash-message success ${flashMessage.cls}`} */}
 
@@ -143,7 +147,10 @@ export default function TodoComp() {
           {todos.length === 0 ? <CompEmpty /> : ""}
 
 
-          <div class="text-slate-900 text-md tracking-widest font-semibold text-lg  p-4 left-0 mt-2 w-96 rounded-lg align-items-left bg-slate-900">
+          <div class=" text-md tracking-widest font-semibold text-lg  p-4 left-0 mt-2 w-96 rounded-lg align-items-left bg-slate-900">
+            <div class="bg-white mx-2 mb-2 p-4 rounded">
+              
+            </div>
             {todos.map((todo) => { 
               return (
                 

@@ -14,6 +14,22 @@
     margin: 0; /* Reset margin */
     padding: 0; /* Reset padding */
   }
+
+  @keyframes wave {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1.2);
+      opacity: 0;
+    }
+  }
+
+  .animate-wave {
+    animation: wave 0.5s ease;
+  }
+
 .btnStyle:hover {
     background-color: #008CBA;
     color: white;
