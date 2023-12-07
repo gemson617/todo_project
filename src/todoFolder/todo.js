@@ -4,6 +4,8 @@ import "./style.css";
 import React, { useState, useEffect, useRef, useReducer } from "react";
 // import TodoComp from './hooks/useReducer';
 
+
+
 function CompEmpty() {
   return (
     <div class="mt-2 flex"  >
@@ -17,8 +19,16 @@ function CompEmpty() {
 
 export default function TodoComp() {
   const [name, setName] = useState("");
+  const [ showCompleted, setShowCompleted] = useState(false);
   const [flashMessage, setFlashMessage] = useState({});
 
+
+  
+  const toggleShowCompleted = () => {
+    setShowCompleted(!showCompleted);
+  };
+
+  
   const alertMsg = (msg, cls) => {
     setFlashMessage({ msg: msg, cls: cls });
   };
@@ -65,10 +75,30 @@ export default function TodoComp() {
         
         return todos.filter((todo) => todo.id !== action.payload.id);
         
+        case "removeCompleted":
+          alertMsg("Completed Todos Removed Successfully", "success");
+          // if(showCompleted){
+          //   setShowCompleted(false);
+          // }
+          // (showCompleted) ? setShowCompleted(false) : '';
+
+          setShowCompleted(showCompleted ? false : showCompleted);
+
+          
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+          
+          return todos.filter((todo) => todo.complete !== true);
+        
       default:
         return todos;
     }
   };
+
+
+  
 
   const [todos, dispatchTodo] = useReducer(reducerFunc, [], () => {
     const storedTodos = localStorage.getItem("todos");
@@ -97,14 +127,23 @@ export default function TodoComp() {
   }, [flashMessage]);
 
 
+  // function clearCompleted(){
+  //   alert('nothing')
+  // }
 
+  const clearCompleted = (event) => {
+    event.preventDefault();
+    alert("todo cannot be null");
+  };
+
+  const hasCompletedTodos = todos.some(todo => todo.complete === true);
 
 
   return (
 
-    <div className="gradient-background">
+    <div className="bg-fixed gradient-background">
       
-      <div class="flex items-center flex-col m-1  pt-10 pl-10 pr-4">
+      <div class="flex items-center flex-col m-1 w-full  pt-10 pl-10 pr-4">
         
         <div class="">
           
@@ -136,7 +175,7 @@ export default function TodoComp() {
 
         </div>
 
-        <div class="">
+        <div class="mt-4 mb-6 ">
           
           <h2>
             <span class="mt-0 text-2xl text-left text-teal-600 sm:max-2xl:text-3xl font-semibold font-sans underline  ">
@@ -147,19 +186,39 @@ export default function TodoComp() {
           {todos.length === 0 ? <CompEmpty /> : ""}
 
 
-          <div class=" text-md tracking-widest font-semibold text-lg  p-4 left-0 mt-2 w-96 rounded-lg align-items-left bg-slate-900">
-            <div class="bg-white mx-2 mb-2 p-4 rounded">
+
+
+        <div class="fixClass relative text-white mx-2 p-2 -mb-2 mt-2 rounded w-full bg-slate-800 flex gap-x-7 items-center justify-between">
+          <div>
+            <span>{todos.length} Todos</span>
+          </div>
+          <div class="flex justify-center -space-x-2">
+            <button class="px-3 py-1 bg-blue-500 text-white hover:bg-blue-600 rounded pr-4">All</button>
+            <button class="px-3 py-1 bg-blue-500 text-white hover:bg-blue-600 rounded" onClick={toggleShowCompleted}>Completed</button>
+          </div>
+          <div>
+            <a class={`px-3 py-1 border-b-2 hover:cursor-pointer border-slate-800 hover:border-b-red-500  text-white ${!hasCompletedTodos ? 'pointer-events-none opacity-50' : ''} `}  onClick={() => dispatchTodo({ type: 'removeCompleted' })}>Clear Completed</a>
+          </div>
+        </div>
+
+              
+          <div class="container ml-2 text-md tracking-widest font-semibold text-lg p-4 left-0 mt-0 w-full rounded-lg align-items-left bg-slate-900 max-h-80" style={{ overflowY: 'auto', paddingRight: '20px' }}>
+         
+              <div class="scrollable-container grid grid-flow-row grid-rows-2">
+
+                {todos.map((todo) => (
+                  // <div  key={todo.id} style={{ display: showCompleted || !todo.completed ? 'block' : 'none' }}>
+                      <TodoList key={todo.id} todo={todo} dispatchTodo={dispatchTodo} showCompleted={showCompleted} />
+                  // </div>
+                ))}
+
+                
               
             </div>
-            {todos.map((todo) => { 
-              return (
-                
-                  <TodoList key={todo.id} todo={todo} dispatchTodo={dispatchTodo} />
-                
-                
-              );
-            })}
+           
           </div>
+
+          
         </div>
       </div>
     </div>
