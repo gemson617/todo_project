@@ -193,8 +193,8 @@ export default function TodoComp() {
             <span>{todos.length} Todos</span>
           </div>
           <div class="flex justify-center -space-x-2">
-            <button class="px-3 py-1 bg-blue-500 text-white hover:bg-blue-600 rounded pr-4">All</button>
-            <button class="px-3 py-1 bg-blue-500 text-white hover:bg-blue-600 rounded" onClick={toggleShowCompleted}>Completed</button>
+            {/* <button class="px-3 py-1 bg-blue-500 text-white hover:bg-blue-600 rounded pr-4">All</button> */}
+            <button class="px-3 py-1 bg-blue-500 text-white hover:bg-blue-600 rounded" onClick={toggleShowCompleted}> {showCompleted ? 'Show All' : 'Not Completed'} </button>
           </div>
           <div>
             <a class={`px-3 py-1 border-b-2 hover:cursor-pointer border-slate-800 hover:border-b-red-500  text-white ${!hasCompletedTodos ? 'pointer-events-none opacity-50' : ''} `}  onClick={() => dispatchTodo({ type: 'removeCompleted' })}>Clear Completed</a>

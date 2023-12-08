@@ -34,7 +34,7 @@ import React ,{ useState,useEffect,useRef,useReducer } from 'react';
         
           
         return(
-            <div className={`p-2 rounded-lg hover:bg-slate-800 ${isClicked ? 'animate-wave' : ''}`} onClick={handleDivClick} style={{ display: !showCompleted || todo.complete ? 'block' : 'none' }}>
+            <div className={`p-2 rounded-lg hover:bg-slate-800 ${isClicked ? 'animate-wave' : ''}`} onClick={handleDivClick} style={{ display: !showCompleted || !todo.complete ? 'block' : 'none' }}>
                 <span className="flex justify-between gap-2 overflow-hidden duration-700 ease-linear border-b-2 hover:break-all border-b-white hover:border-b-slate-300"> 
                     <div className="flex items-center gap-2">
                         <input className="border-gray-300 rounded-xl focus:ring-indigo-500 checked:bg-indigo-500 checked:border-transparent" type="checkbox" checked={todo.complete} onClick={() => dispatchTodo({ type: 'toggle', payload: { id: todo.id } })} />
