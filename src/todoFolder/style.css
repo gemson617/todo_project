@@ -35,9 +35,10 @@
       position: sticky;
     }
     
-
-
-    .gradient-background {
+    body {
+      margin: 0; /* Remove default margin */
+      padding: 0; /* Remove default padding */
+      overflow-y: auto; /* Allow vertical scrolling for the body */
       background: linear-gradient(
         90deg,
         hsla(141, 54%, 86%, 1) 0%,
@@ -49,6 +50,25 @@
       padding: 0; /* Reset padding */
       background-attachment: fixed; /* Fixed background */
     }
+
+    /* .gradient-background {
+
+    } */
+
+
+    .gradient-background {
+      background: #009FFF;  /* fallback for old browsers */
+      background: -webkit-linear-gradient(to right, #ec2F4B, #009FFF);  /* Chrome 10-25, Safari 5.1-6 */
+      background: linear-gradient(to right, #ec2F4B, #009FFF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+      /* Other styles for the fixed background */
+      height: 100vh;
+      margin: 0; /* Reset margin */
+      padding: 0; /* Reset padding */
+      background-attachment: fixed;
+      background-size: cover; /* Adjust as needed */
+    }
+    
     
 
   @keyframes wave {

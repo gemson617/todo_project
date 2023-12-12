@@ -143,16 +143,16 @@ export default function TodoComp() {
 
     <div className="bg-fixed gradient-background">
       
-      <div class="flex items-center flex-col m-1 w-full  pt-10 pl-10 pr-4">
+      <div class="flex items-center flex-col ml-0 m-1 w-full p-4 pt-10  pr-4">
         
         <div class="">
           
-          <h1 class="text-2xl text-teal-600 sm:max-2xl:text-3xl font-semibold font-sans underline">
+          <h1 class="text-2xl text- ml-0 text-white sm:max-2xl:text-3xl font-semibold font-sans underline">
             Add Todo
           </h1>
         <form onSubmit={handleSubmit}>
-            <div class="w-96 min-w-full">
-                <input type="text" class="w-96 p-2 m-2 rounded border-l-2 border-l-emerald-700 focus:border-l-0 focus:border-b-2 focus:border-b-blue-500  focus:outline-none font-sans text-slate-900 font-semibold uppercase shadow-xl"  placeholder="Enter Todo" value={name} name="name" onChange={(e) => setName(e.target.value)} />
+            <div class="">
+                <input type="text" class="w-96 p-2 m-2 rounded border-l-2 border-l-slate-900 focus:border-l-4 focus:border-b-blue-900  focus:outline-none font-sans text-slate-900 font-semibold uppercase shadow-xl"  placeholder="Enter Todo" value={name} name="name" onChange={(e) => setName(e.target.value)} />
                 </div>
                 <input type="submit" value="submit" class=" border-2 border-green-400 rounded p-2 py-1 bg-slate-50 font-serif font-medium ml-2 hover:bg-green-400 ease-linear duration-300"  />
           
@@ -178,7 +178,7 @@ export default function TodoComp() {
         <div class="mt-4 mb-6 ">
           
           <h2>
-            <span class="mt-0 text-2xl text-left text-teal-600 sm:max-2xl:text-3xl font-semibold font-sans underline  ">
+            <span class="mt-0 text-2xl text-left text-white sm:max-2xl:text-3xl font-semibold font-sans underline  ">
               Your TodoList
             </span>
           </h2>
